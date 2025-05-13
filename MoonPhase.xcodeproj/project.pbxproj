@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C4C5E3792DD32FAC00215EB5 /* SwiftAA in Frameworks */ = {isa = PBXBuildFile; productRef = C4C5E3782DD32FAC00215EB5 /* SwiftAA */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C4C5E3692DD32E6F00215EB5 /* MoonPhase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoonPhase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C5E3792DD32FAC00215EB5 /* SwiftAA in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = MoonPhase;
 			packageProductDependencies = (
+				C4C5E3782DD32FAC00215EB5 /* SwiftAA */,
 			);
 			productName = MoonPhase;
 			productReference = C4C5E3692DD32E6F00215EB5 /* MoonPhase.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = C4C5E3602DD32E6F00215EB5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C4C5E3772DD32FAC00215EB5 /* XCRemoteSwiftPackageReference "SwiftAA" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C4C5E36A2DD32E6F00215EB5 /* Products */;
 			projectDirPath = "";
@@ -253,6 +262,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Lokalizacja;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -280,6 +290,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Lokalizacja;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -320,6 +331,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C4C5E3772DD32FAC00215EB5 /* XCRemoteSwiftPackageReference "SwiftAA" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onekiloparsec/SwiftAA";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C4C5E3782DD32FAC00215EB5 /* SwiftAA */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4C5E3772DD32FAC00215EB5 /* XCRemoteSwiftPackageReference "SwiftAA" */;
+			productName = SwiftAA;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4C5E3612DD32E6F00215EB5 /* Project object */;
 }
