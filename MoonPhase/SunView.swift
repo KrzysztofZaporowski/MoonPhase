@@ -11,12 +11,16 @@ import SwiftAA
 
 struct SunView: View {
     @Binding var location: CLLocationCoordinate2D
-    @State var sunrise: String = "--"
-    @State var sunset: String = "--"
-    @State var transit: String = "--"
-    @State var dayLength: String = "--"
+    @State var sunrise: Date = Date()
+    @State var sunset: Date = Date()
+    @State var transit: Date = Date()
+    @State var dayLength: Date = Date()
     @State var date: Date = Date()
 
+    @State var control = 245.0
+    @State var height:Double = 245.0
+    @State var width:Double = 200.0
+    
     init(location: Binding<CLLocationCoordinate2D>) {
         _location = location
     }
@@ -27,49 +31,65 @@ struct SunView: View {
         let jd = JulianDay(date)
         let sun = Sun(julianDay: jd)
         let times = sun.riseTransitSetTimes(for: coordinates)
-
+        
         if let rise = times.riseTime {
-            sunrise = rise.date.timeOnly
+            self.sunrise = rise.date
         }
         if let set = times.setTime {
-            sunset = set.date.timeOnly
+            self.sunset = set.date
         }
-        if let transitVal = times.transitTime {
-            transit = transitVal.date.timeOnly
+        if let transit = times.transitTime {
+            self.transit = transit.date
         }
-        if let rise = times.riseTime?.date, let set = times.riseTime?.date {
-            let delta = set.timeIntervalSince(rise)
-            let formatter = DateComponentsFormatter()
-            formatter.unitsStyle = .abbreviated
-            formatter.allowedUnits = [.hour, .minute, .second]
-            dayLength = formatter.string(from: delta) ?? "00:00.00"
-        } else {
-            dayLength = "N/A"
-        }
+        let delta = sunset.timeIntervalSince(sunrise)
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = [.pad]
+
+        let dayLength = formatter.string(from: delta) ?? "00:00:00"
     }
 
     var body: some View {
-        VStack(spacing: 20) {
-            DatePicker("Select date", selection: $date, displayedComponents: .date)
+        VStack() {
+            HStack {
+                DatePicker(selection: $date, displayedComponents: .date) {
+                    Text("Select date")
+                }
+                Spacer()
+                Button("Today") {
+                    date = Date()
+                }
+            }
+            Spacer()
+            GeometryReader { geometry in
+                Image("sun").resizable().scaledToFit().onAppear() {
+                    let frame = geometry.frame(in: .local)
+                    height = frame.height
+                    width = frame.width
+                    control = width * 0.62
+                }
+            }
+            Spacer()
             HStack {
                 Text("Sunrise")
                 Spacer()
-                Text(sunrise)
+                Text(sunrise.timeOnly)
             }
             HStack {
                 Text("Transit")
                 Spacer()
-                Text(transit)
+                Text(transit.timeOnly)
             }
             HStack {
                 Text("Sunset")
                 Spacer()
-                Text(sunset)
+                Text(sunset.timeOnly)
             }
             HStack {
                 Text("Day length")
                 Spacer()
-                Text(dayLength)
+                Text(dayLength.timeOnly)
             }
         }
         .padding()
