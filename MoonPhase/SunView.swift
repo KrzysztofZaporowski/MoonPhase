@@ -14,7 +14,7 @@ struct SunView: View {
     @State var sunrise: Date = Date()
     @State var sunset: Date = Date()
     @State var transit: Date = Date()
-    @State var dayLength: Date = Date()
+    @State var dayLength: String = "00:00:00"
     @State var date: Date = Date()
 
     @State var control = 245.0
@@ -47,7 +47,7 @@ struct SunView: View {
         formatter.unitsStyle = .positional
         formatter.zeroFormattingBehavior = [.pad]
 
-        let dayLength = formatter.string(from: delta) ?? "00:00:00"
+        dayLength = formatter.string(from: delta) ?? "00:00:00"
     }
 
     var body: some View {
@@ -89,7 +89,7 @@ struct SunView: View {
             HStack {
                 Text("Day length")
                 Spacer()
-                Text(dayLength.timeOnly)
+                Text(dayLength)
             }
         }
         .padding()
